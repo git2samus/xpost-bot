@@ -4,6 +4,7 @@ from praw import Reddit
 import settings as raw_settings
 from generators import submissions_gen
 from filters import filter_submission
+from interaction import repost_submission
 from utils import clean_settings
 
 
@@ -23,4 +24,5 @@ if __name__ == '__main__':
 
     for submission in submissions:
         print('[{}] {} - {}'.format(datetime.now().isoformat(), submission.created_utc, submission))
+        print(repost_submission(submission, bot, settings))
 
