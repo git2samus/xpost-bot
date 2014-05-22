@@ -2,10 +2,12 @@ import re
 
 
 def clean_subreddit(raw_subreddit):
+    #TODO URL to subreddit
     return raw_subreddit
 
 
 def clean_username(raw_username):
+    #TODO URL to username
     return raw_username
 
 
@@ -22,6 +24,16 @@ def clean_settings(raw_settings):
         author='/u/Samus_',
         version='v0.1',
     )
+
+    bot_username = getattr(raw_settings, 'bot_username', None)
+    if not bot_username:
+        raise Exception('Missing bot_username in settings')
+    clean_settings['bot_username'] = bot_username
+
+    bot_password = getattr(raw_settings, 'bot_password', None)
+    if not bot_password:
+        raise Exception('Missing bot_password in settings')
+    clean_settings['bot_password'] = bot_password
 
     destination_subreddit = getattr(raw_settings, 'destination_subreddit', None)
     if not destination_subreddit:
