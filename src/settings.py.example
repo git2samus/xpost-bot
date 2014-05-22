@@ -1,0 +1,14 @@
+## example settings file ##
+# copy this file to 'settings.py' and fill the blanks
+
+user_agent = '' # REQUIRED: bot identity (unique)
+
+destination_subreddit = '' # subreddit to repost matches
+
+# posts containing any of the matched_keywords/regexps and none of the ignored_keywords/regexps will be reposted to destination_subreddit
+matched_keywords, matched_regexps = [], []
+ignored_keywords, ignored_regexps = [], []
+
+target_subreddits  = [] # subreddits to scan for matches (defaults to /r/all)
+ignored_subreddits = [] # subreddits not to consider (destination_subreddit is automatically ignored)
+ignored_submitters = [] # Reddit usernames whose submissions won't be reposted
