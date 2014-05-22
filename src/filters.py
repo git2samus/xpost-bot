@@ -1,29 +1,39 @@
-import re
+def _test_submitter(submission, settings):
+    author_name = submission.author.name.lower()
+    return author_name in settings['ignored_submitters']
+
+
+def _test_subreddit(submission, settings):
+    subreddit_name = submission.subreddit.display_name.lower()
+    return subreddit_name in settings['ignored_subreddits']
 
 
 def _test_matched(text, settings):
-    keywords, regexps = settings['matched_keywords'], settings['matched_regexps']
+    matched_keywords, matched_regexps = settings['matched_keywords'], settings['matched_regexps']
 
     text = text.lower()
     return any(
-        keyword.lower() in text for keyword in keywords
+        keyword in text for keyword in matched_keywords
     ) or any(
-        regexp.search(text, re.IGNORECASE) for regexp in regexps
+        regexp.search(text) for regexp in matched_regexps
     )
 
 
 def _test_excluded(text, settings):
-    keywords, regexps = settings['excluded_keywords'], settings['excluded_regexps']
+    excluded_keywords, excluded_regexps = settings['excluded_keywords'], settings['excluded_regexps']
 
     text = text.lower()
     return not any(
-        keyword.lower() in text for keyword in keywords
+        keyword in text for keyword in excluded_keywords
     ) and not any(
-        regexp.search(text, re.IGNORECASE) for regexp in regexps
+        regexp.search(text) for regexp in excluded_regexps
     )
 
 
 def filter_submission(submission, settings):
+    if _test_submitter(submission, settings) or _test_subreddit(submission, settings):
+        return False
+
     match = _test_matched(submission.title, settings)
     if not match and submission.is_self:
         match = _test_matched(submission.selftext, settings)

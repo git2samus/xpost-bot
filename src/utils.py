@@ -31,22 +31,22 @@ def clean_settings(raw_settings):
     matched_keywords = getattr(raw_settings, 'matched_keywords', [])
     if isinstance(matched_keywords, basestring):
         matched_keywords = [matched_keywords]
-    clean_settings['matched_keywords'] = matched_keywords
+    clean_settings['matched_keywords'] = [keyword.lower() for keyword in matched_keywords]
 
     matched_regexps = getattr(raw_settings, 'matched_regexps', [])
     if isinstance(matched_regexps, basestring):
         matched_regexps = [matched_regexps]
-    clean_settings['matched_regexps'] = [re.compile(regexp) for regexp in matched_regexps]
+    clean_settings['matched_regexps'] = [re.compile(regexp, re.I) for regexp in matched_regexps]
 
     excluded_keywords = getattr(raw_settings, 'excluded_keywords', [])
     if isinstance(excluded_keywords, basestring):
         excluded_keywords = [excluded_keywords]
-    clean_settings['excluded_keywords'] = excluded_keywords
+    clean_settings['excluded_keywords'] = [keyword.lower() for keyword in excluded_keywords]
 
     excluded_regexps = getattr(raw_settings, 'excluded_regexps', [])
     if isinstance(excluded_regexps, basestring):
         excluded_regexps = [excluded_regexps]
-    clean_settings['excluded_regexps'] = [re.compile(regexp) for regexp in excluded_regexps]
+    clean_settings['excluded_regexps'] = [re.compile(regexp, re.I) for regexp in excluded_regexps]
 
     target_subreddits = getattr(raw_settings, 'target_subreddits', [])
     if not target_subreddits:
