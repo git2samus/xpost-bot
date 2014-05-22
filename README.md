@@ -11,6 +11,8 @@ Setup
 * Copy src/settings.py.example to src/settings.py and fill-in
 * Run src/bot.py
 
+You'll need a user with a bit of karma to auth the bot for the posts to succeed.
+
 Settings
 --------
 
