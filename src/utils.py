@@ -10,6 +10,7 @@ def clean_username(raw_username):
 
 
 def clean_settings(raw_settings):
+    """ return a normalized settings dict from settings module """
     clean_settings = {}
 
     user_agent = getattr(raw_settings, 'user_agent', None)
@@ -37,15 +38,15 @@ def clean_settings(raw_settings):
         matched_regexps = [matched_regexps]
     clean_settings['matched_regexps'] = [re.compile(regexp) for regexp in matched_regexps]
 
-    ignored_keywords = getattr(raw_settings, 'ignored_keywords', [])
-    if isinstance(ignored_keywords, basestring):
-        ignored_keywords = [ignored_keywords]
-    clean_settings['ignored_keywords'] = ignored_keywords
+    excluded_keywords = getattr(raw_settings, 'excluded_keywords', [])
+    if isinstance(excluded_keywords, basestring):
+        excluded_keywords = [excluded_keywords]
+    clean_settings['excluded_keywords'] = excluded_keywords
 
-    ignored_regexps = getattr(raw_settings, 'ignored_regexps', [])
-    if isinstance(ignored_regexps, basestring):
-        ignored_regexps = [ignored_regexps]
-    clean_settings['ignored_regexps'] = [re.compile(regexp) for regexp in ignored_regexps]
+    excluded_regexps = getattr(raw_settings, 'excluded_regexps', [])
+    if isinstance(excluded_regexps, basestring):
+        excluded_regexps = [excluded_regexps]
+    clean_settings['excluded_regexps'] = [re.compile(regexp) for regexp in excluded_regexps]
 
     target_subreddits = getattr(raw_settings, 'target_subreddits', [])
     if not target_subreddits:
