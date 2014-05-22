@@ -1,4 +1,6 @@
 def _test_submitter(submission, settings):
+    if not submission.author:
+        return True # ignore [deleted]
     author_name = submission.author.name.lower()
     return author_name in settings['ignored_submitters']
 
