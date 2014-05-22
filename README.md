@@ -28,8 +28,10 @@ Settings
 
 **excluded_keywords**, **excluded_regexps** list of strings/string-regexps that the submission must not contain/match (none of those) in order to be considered for repost, takes precedence over matched
 
-**target_subreddits** list of subreddits to scan for matches, e.g. ['python', 'django'] (defaults to ['all'] meaning the whole site)
+**target_subreddits** list of subreddits to scan for matches, e.g. \['python', 'django'] (defaults to \['all'] meaning the whole site)
+
 **ignored_subreddits** list of subreddits to exclude from matches (destination_subreddit is automatically ignored)
+
 **ignored_submitters** list of Reddit usernames for users whose submissions won't be reposted
 
 TODO
