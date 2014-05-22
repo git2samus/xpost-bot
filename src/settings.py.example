@@ -14,6 +14,6 @@ title_template        = '{s.title}' # template string to generate submission tit
 matched_keywords,  matched_regexps  = [], []
 excluded_keywords, excluded_regexps = [], []
 
-target_subreddits  = [] # subreddits to scan for matches (defaults to /r/all)
+target_subreddits  = [] # subreddits to scan for matches (defaults to ['all'])
 ignored_subreddits = [] # subreddits not to consider (destination_subreddit is automatically ignored)
 ignored_submitters = [] # Reddit usernames whose submissions won't be reposted
