@@ -6,7 +6,9 @@ user_agent   = '' # REQUIRED: bot identity (unique)
 bot_username = '' # REQUIRED: Reddit user from which the bot will post
 bot_password = '' # REQUIRED: credentials for bot_username
 
-destination_subreddit = '' # subreddit to repost matches
+destination_subreddit = ''          # subreddit to repost matches
+title_template        = '{s.title}' # template string to generate submission title
+                                    # 's' is https://praw.readthedocs.org/en/v2.1.16/pages/code_overview.html#praw.objects.Submission
 
 # posts containing any of the matched_keywords/regexps and none of the excluded_keywords/regexps will be reposted to destination_subreddit
 matched_keywords,  matched_regexps  = [], []

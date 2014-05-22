@@ -40,6 +40,8 @@ def clean_settings(raw_settings):
         raise Exception('Missing destination_subreddit in settings')
     clean_settings['destination_subreddit'] = clean_subreddit(destination_subreddit)
 
+    clean_settings['title_template'] = unicode(getattr(raw_settings, 'title_template', '{s.title}'))
+
     matched_keywords = getattr(raw_settings, 'matched_keywords', [])
     if isinstance(matched_keywords, basestring):
         matched_keywords = [matched_keywords]
