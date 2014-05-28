@@ -3,6 +3,9 @@ import praw
 from filters import SubmissionFilter
 
 
+__version__ = '0.1.1'
+
+
 class XPostBot(object):
     """ XPostBot - Reddit bot to scan relevant content and repost on specialized subreddits """
 
@@ -10,9 +13,14 @@ class XPostBot(object):
         """ create instance of PRAW bot and store settigns """
         self.settings = settings
 
+        full_user_agent = '{user_agent} -- {source} by {author} v{version}'.format(
+            user_agent=self.settings['user_agent'],
+            source='github.com/git2samus/xpost-bot',
+            author='/u/Samus_',
+            version=__version__,
+        )
         # disable internal cache so praw blocks until it's time to make a new request
-        user_agent = self.settings['user_agent']
-        self.bot = praw.Reddit(user_agent=user_agent, cache_timeout=0)
+        self.bot = praw.Reddit(user_agent=full_user_agent, cache_timeout=0)
 
     def _submissions_gen(self, target_subreddits, newer_than_id=None):
         """ internal generator for submissions that match the search critetia from settings """

@@ -18,12 +18,7 @@ def clean_settings(raw_settings):
     user_agent = getattr(raw_settings, 'user_agent', None)
     if not user_agent:
         raise Exception('Missing user_agent in settings')
-    clean_settings['user_agent'] = '{user_agent} -- {source} by {author} {version}'.format(
-        user_agent=user_agent,
-        source='github.com/git2samus/xpost-bot',
-        author='/u/Samus_',
-        version='v0.1',
-    )
+    clean_settings['user_agent'] = user_agent
 
     bot_username = getattr(raw_settings, 'bot_username', None)
     if not bot_username:
